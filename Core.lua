@@ -86,6 +86,16 @@ function ns.ResetAll()
     end
 end
 
+function ns.SetAllPreferences(enabled)
+    for mapID in pairs(ns.KnownOutdoorMapIDs) do
+        ns.SetPreference(mapID, enabled)
+    end
+    ns.ApplyCurrentZone()
+    if ns.RefreshOptions then
+        ns.RefreshOptions()
+    end
+end
+
 local function HandleCommand(input)
     input = (input or ""):lower():match("^%s*(.-)%s*$")
     if input == "" then
