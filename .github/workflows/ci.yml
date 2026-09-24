@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validate addon files
+        run: |
+          set -euo pipefail
+          test -f ForeverAutoFog.toc
+          grep -qxF '## Interface: 16001' ForeverAutoFog.toc
+          grep -qxF '## SavedVariables: ForeverAutoFogDB' ForeverAutoFog.toc
+          python3 -m unittest discover -s tests
+      - name: Dry-run package
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -d

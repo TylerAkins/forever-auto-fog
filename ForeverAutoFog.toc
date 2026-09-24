@@ -1,0 +1,18 @@
+## Interface: 16001
+## Title: Forever Auto Fog
+## Notes: Automatically apply volumetric fog preferences per outdoor zone.
+## Author: Tyler Akins
+## Version: @project-version@
+## X-License: GPL-3.0-or-later
+## X-Category: Miscellaneous
+## Category: Miscellaneous
+## X-Website: https://github.com/TylerAkins/forever-auto-fog
+## X-Source: https://github.com/TylerAkins/forever-auto-fog
+## X-Issues: https://github.com/TylerAkins/forever-auto-fog/issues
+## SavedVariables: ForeverAutoFogDB
+## IconTexture: Interface\Icons\Spell_Nature_Sleep
+## DefaultState: enabled
+
+Zones.lua
+Core.lua
+Options.lua

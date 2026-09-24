@@ -1,0 +1,61 @@
+name: Bug report
+description: Something in Forever Auto Fog is not working as expected
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please check existing issues first.
+  - type: input
+    id: addon-version
+    attributes:
+      label: Forever Auto Fog version
+      description: From `/faf status`, the addon `.toc`, CurseForge, or the release zip name.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: wow-build
+    attributes:
+      label: WoW Forever build / interface
+      description: Optional. Character select → bottom-left build, or the TOC Interface value.
+      placeholder: "1.60.1 / 16001"
+  - type: input
+    id: zone
+    attributes:
+      label: Zone and map ID
+      description: Paste the output from `/faf status`.
+      placeholder: "Durotar (map 1411)"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      placeholder: Fog did not change after entering a zone.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: Fog should have been enabled or disabled based on the saved zone preference.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: errors
+    attributes:
+      label: Lua errors or `/faf status` output
+      description: Paste any relevant red errors or command output.
+      render: shell

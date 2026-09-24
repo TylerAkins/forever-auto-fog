@@ -1,0 +1,39 @@
+name: Update Forever interface
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * 3"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Fetch current Forever build
+        run: curl --fail --silent --show-error https://us.version.battle.net/v2/products/wow_classic_beta/versions --output "${RUNNER_TEMP}/forever-versions"
+      - name: Prepare compatibility release
+        run: python3 tools/update_forever_interface.py --versions-file "${RUNNER_TEMP}/forever-versions"
+      - name: Create pull request when compatibility changed
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: forever-interface-update
+          delete-branch: true
+          commit-message: "chore: prepare Forever interface update"
+          title: "chore: prepare Forever interface update"
+          body: Automated WoW Forever TOC-interface compatibility update.
+          add-paths: |
+            ForeverAutoFog.toc
+            VERSION
+            CHANGELOG.md
+            RELEASE_NOTES.md
