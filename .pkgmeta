@@ -1,0 +1,8 @@
+package-as: ForeverAutoFog
+manual-changelog: CHANGELOG.md
+
+ignore:
+  - .github
+  - .gitignore
+  - tests
+  - tools

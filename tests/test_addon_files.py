@@ -26,6 +26,15 @@ class AddonFilesTests(unittest.TestCase):
         self.assertRegex(zones, r"mapIDs = \{")
         self.assertNotIn('"Durotar"', zones)
 
+    def test_bulk_controls_and_curseforge_package_metadata_exist(self):
+        core = (ROOT / "Core.lua").read_text(encoding="utf-8")
+        options = (ROOT / "Options.lua").read_text(encoding="utf-8")
+        pkgmeta = (ROOT / ".pkgmeta").read_text(encoding="utf-8")
+        self.assertIn("function ns.SetAllPreferences(enabled)", core)
+        self.assertIn("ns.SetAllPreferences(true)", options)
+        self.assertIn("ns.SetAllPreferences(false)", options)
+        self.assertIn("package-as: ForeverAutoFog", pkgmeta)
+
     def test_release_notes_match_version(self):
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
         notes = (ROOT / "RELEASE_NOTES.md").read_text(encoding="utf-8")

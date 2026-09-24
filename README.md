@@ -14,11 +14,13 @@ Forever Auto Fog remembers whether volumetric fog should be enabled for each out
 
 **GitHub:** download a `ForeverAutoFog-v*-forever.zip` file from [GitHub Releases](https://github.com/TylerAkins/forever-auto-fog/releases), not GitHub's automatically generated “Source code” archives.
 
+**CurseForge:** the repository includes CurseForge-compatible `.pkgmeta` packaging. Once its CurseForge project is created, install Forever Auto Fog through the CurseForge client with the Forever game flavor selected.
+
 Extract the zip so the folder is `ForeverAutoFog`, copy it into `Interface\\AddOns\\`, then restart the game or `/reload`. Enable the addon at character select if needed.
 
 ## Settings
 
-Open **Escape → Options → AddOns → Forever Auto Fog**. The scrollable **Enable Fog** list is grouped by continent and localized by the game client. A checked zone enables `volumeFog`; an unchecked zone disables it. Changing the current zone applies immediately. **Reset All to Default** enables fog in every zone.
+Open **Escape → Options → AddOns → Forever Auto Fog**. The scrollable **Enable Fog** list is grouped by continent and localized by the game client. A checked zone enables `volumeFog`; an unchecked zone disables it. Changing the current zone applies immediately. **Enable All**, **Disable All**, and **Reset All to Default** update the supported outdoor zones at once; reset restores fog to enabled everywhere.
 
 The addon intentionally excludes cities and instances. `volumeFog` is managed for outdoor world-zone maps only.
 

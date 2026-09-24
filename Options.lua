@@ -66,9 +66,21 @@ function ns.CreateOptions()
     AddText(panel, "Automatically applies your saved volumetric-fog preference whenever you enter an outdoor zone.", 16, -44, 600)
     AddText(panel, "Enable Fog", 16, -78, 600):SetFontObject("GameFontNormalLarge")
 
+    local enableAll = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+    enableAll:SetSize(100, 22)
+    enableAll:SetPoint("TOPRIGHT", -244, -76)
+    enableAll:SetText("Enable All")
+    enableAll:SetScript("OnClick", function() ns.SetAllPreferences(true) end)
+
+    local disableAll = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+    disableAll:SetSize(100, 22)
+    disableAll:SetPoint("LEFT", enableAll, "RIGHT", 6, 0)
+    disableAll:SetText("Disable All")
+    disableAll:SetScript("OnClick", function() ns.SetAllPreferences(false) end)
+
     local reset = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
     reset:SetSize(160, 22)
-    reset:SetPoint("TOPRIGHT", -24, -76)
+    reset:SetPoint("LEFT", disableAll, "RIGHT", 6, 0)
     reset:SetText("Reset All to Default")
     reset:SetScript("OnClick", ns.ResetAll)
 
