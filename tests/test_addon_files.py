@@ -33,6 +33,9 @@ class AddonFilesTests(unittest.TestCase):
         self.assertIn("function ns.SetAllPreferences(enabled)", core)
         self.assertIn("ns.SetAllPreferences(true)", options)
         self.assertIn("ns.SetAllPreferences(false)", options)
+        self.assertIn('enableAll:SetPoint("TOPLEFT", 16, -110)', options)
+        self.assertIn('checkbox.Text:SetText(zone.name)', options)
+        self.assertNotIn('zone.name .. ": Enable Fog"', options)
         self.assertIn("package-as: ForeverAutoFog", pkgmeta)
 
     def test_release_notes_match_version(self):
