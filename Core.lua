@@ -12,21 +12,35 @@ local function Print(message)
     DEFAULT_CHAT_FRAME:AddMessage(ADDON_PREFIX .. message)
 end
 
-local function IsMapInfo(info)
-    return info and info.mapID and info.name and info.mapType == Enum.UIMapType.Zone
+local function IsOutdoorZoneMap(mapID)
+    local info = C_Map.GetMapInfo(mapID)
+    return info and info.name and info.mapType == Enum.UIMapType.Zone and not ns.CityMapIDs[mapID]
 end
 
 function ns.GetCurrentZone()
+    if IsInInstance() then
+        return nil, nil
+    end
+
     local mapID = C_Map.GetBestMapForUnit("player")
     if not mapID then
         return nil, nil
     end
 
-    local info = C_Map.GetMapInfo(mapID)
-    if not IsMapInfo(info) or ns.CityMapIDs[mapID] then
-        return nil, nil
+    local visited = {}
+    while mapID and mapID ~= 0 and not visited[mapID] do
+        visited[mapID] = true
+        if IsOutdoorZoneMap(mapID) then
+            local info = C_Map.GetMapInfo(mapID)
+            return mapID, info.name
+        end
+        local info = C_Map.GetMapInfo(mapID)
+        if not info then
+            break
+        end
+        mapID = info.parentMapID
     end
-    return mapID, info.name
+    return nil, nil
 end
 
 function ns.GetPreference(mapID)
@@ -130,6 +144,7 @@ frame:RegisterEvent("PLAYER_LOGIN")
 frame:RegisterEvent("ZONE_CHANGED")
 frame:RegisterEvent("ZONE_CHANGED_INDOORS")
 frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+frame:RegisterEvent("PLAYER_MAP_CHANGED")
 frame:SetScript("OnEvent", function(_, event, loadedAddon)
     if event == "ADDON_LOADED" then
         if loadedAddon ~= addonName then return end

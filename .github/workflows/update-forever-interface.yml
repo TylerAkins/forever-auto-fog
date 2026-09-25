@@ -31,7 +31,9 @@ jobs:
           delete-branch: true
           commit-message: "chore: prepare Forever interface update"
           title: "chore: prepare Forever interface update"
-          body: Automated WoW Forever TOC-interface compatibility update.
+          assignees: TylerAkins
+          body: |
+            @TylerAkins — automated WoW Forever TOC-interface compatibility update.
           add-paths: |
             ForeverAutoFog.toc
             VERSION
