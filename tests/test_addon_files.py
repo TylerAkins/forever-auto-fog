@@ -45,6 +45,7 @@ class AddonFilesTests(unittest.TestCase):
         version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
         notes = (ROOT / "RELEASE_NOTES.md").read_text(encoding="utf-8")
         self.assertEqual(re.findall(r"^## (\d+\.\d+\.\d+)", notes, re.M), [version])
+        self.assertEqual(1, notes.count("## "))
 
 
 if __name__ == "__main__":

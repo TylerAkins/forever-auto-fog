@@ -1,8 +1,17 @@
+# https://github.com/BigWigsMods/packager
 package-as: ForeverAutoFog
-manual-changelog: CHANGELOG.md
+
+manual-changelog:
+  filename: RELEASE_NOTES.md
+  markup-type: markdown
 
 ignore:
+  - .git
   - .github
   - .gitignore
+  - .pkgmeta
+  - VERSION
+  - CHANGELOG.md
+  - RELEASE_NOTES.md
   - tests
   - tools

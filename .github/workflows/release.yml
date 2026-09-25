@@ -19,6 +19,8 @@ jobs:
       - name: Validate tag version
         run: |
           set -euo pipefail
-          test "v$(tr -d '[:space:]' < VERSION)" = "$GITHUB_REF_NAME"
+          VERSION="$(tr -d '[:space:]' < VERSION)"
+          test "v${VERSION}" = "$GITHUB_REF_NAME"
+          python3 tools/release.py validate-notes --version "$VERSION"
       - name: Package and publish GitHub Release
         uses: BigWigsMods/packager@v2
