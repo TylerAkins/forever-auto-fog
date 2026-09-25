@@ -19,6 +19,9 @@ class AddonFilesTests(unittest.TestCase):
         self.assertIn('C_CVar.SetCVar(FOG_CVAR, desired)', core)
         self.assertIn('C_CVar.GetCVar(FOG_CVAR) ~= desired', core)
         self.assertIn('"ZONE_CHANGED_NEW_AREA"', core)
+        self.assertIn('"PLAYER_MAP_CHANGED"', core)
+        self.assertIn("parentMapID", core)
+        self.assertIn("IsInInstance()", core)
         self.assertNotIn('OnUpdate', core)
 
     def test_zone_catalog_uses_numeric_map_ids(self):
