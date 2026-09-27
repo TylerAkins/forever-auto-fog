@@ -1,8 +1,10 @@
 # Forever Auto Fog
 
-**Beta** for World of Warcraft Forever (Interface 16001).
+**Deprecated** for current World of Warcraft Forever builds.
 
-Forever Auto Fog remembers whether volumetric fog should be enabled for each outdoor zone, then applies that preference when you travel. Fresh installs leave fog enabled everywhere, matching the game default.
+Blizzard removed the client setting that allowed disabling volumetric fog in the [September 24, 2026 beta development notes](https://us.forums.blizzard.com/en/wow/t/wow-forever-beta-development-notes-%E2%80%93-updated-september-24/2360696) (“Removed a setting that could disable fog in an unintended manner”). Forever Auto Fog relied on the `volumeFog` CVar; it has no effect on builds that no longer expose that control. Older Forever builds that still support `volumeFog` may continue to use the last release.
+
+Forever Auto Fog remembered whether volumetric fog should be enabled for each outdoor zone, then applied that preference when you traveled. Fresh installs left fog enabled everywhere, matching the game default.
 
 ## Requirements
 
@@ -43,6 +45,8 @@ Run the local validation suite with:
 ```sh
 python3 -m unittest discover -s tests
 ```
+
+WoW Forever **Interface** bumps were previously handled by the [Update Forever interface](.github/workflows/update-forever-interface.yml) GitHub Action on a weekly schedule. That schedule is turned off while the addon is deprecated; the workflow remains available for manual `workflow_dispatch` runs if compatibility maintenance resumes.
 
 ## License
 
