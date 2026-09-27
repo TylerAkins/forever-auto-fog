@@ -1,9 +1,9 @@
 name: Update Forever interface
 
+# Scheduled runs are disabled while Forever Auto Fog is deprecated (Blizzard removed
+# volumetric-fog user control). Trigger manually if interface maintenance resumes.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 12 * * 3"
 
 permissions:
   contents: write
